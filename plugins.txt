@@ -70,3 +70,4 @@ pipeline-graph-analysis
 workflow-multibranch
 workflow-scm-step
 cobertura
+sonar-maven-plugin
