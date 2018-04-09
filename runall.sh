@@ -29,7 +29,14 @@ echo "Host ip: ${IP}"
 
 if [ ! -d m2deps ]; then
     mkdir m2deps
+    chown -R jenkins:jenkins m2deps
 fi
+
+if [ ! -d jobs ]; then
+    mkdir jobs
+    chown -R jenkins:jenkins jobs
+fi
+
 
 docker run -p ${jenkins_port}:8080  -v `pwd`/downloads:/var/jenkins_home/downloads \
     -v `pwd`/jobs:/var/jenkins_home/jobs/ \
