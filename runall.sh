@@ -30,14 +30,21 @@ echo "Host ip: ${IP}"
 
 if [ ! -d m2deps ]; then
     mkdir m2deps    
-    chown -R 1000:1000 m2deps
 fi
 
 if [ ! -d jobs ]; then
-    mkdir jobs    
-    chown -R 1000:1000 jobs
+    mkdir jobs        
 fi
 
+# chown -R 1000:1000 jobs
+# chown -R 1000:1000 m2deps
+
 docker run -p ${jenkins_port}:8080  -v `pwd`/downloads:/var/jenkins_home/downloads --rm --name myjenkins -e SONARQUBE_HOST=http://${IP}:${sonar_port} --privileged myjenkins:latest
+
+# docker run -p ${jenkins_port}:8080  -v `pwd`/downloads:/var/jenkins_home/downloads \
+#    -v `pwd`/jobs:/var/jenkins_home/jobs/ \
+#    -v `pwd`/m2deps:/var/jenkins_home/.m2/repository/ --rm --name myjenkins \
+#    -e SONARQUBE_HOST=http://${IP}:${sonar_port} \
+#    myjenkins:latest
 
 
