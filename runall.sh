@@ -38,9 +38,6 @@ if [ ! -d jobs ]; then
     chown -R 1000:1000 jobs
 fi
 
-docker run -p ${jenkins_port}:8080  -v `pwd`/downloads:/var/jenkins_home/downloads \
-      --rm --name myjenkins \    
-      -e SONARQUBE_HOST=http://${IP}:${sonar_port} --privileged \    
-       myjenkins:latest
+docker run -p ${jenkins_port}:8080  -v `pwd`/downloads:/var/jenkins_home/downloads --rm --name myjenkins -e SONARQUBE_HOST=http://${IP}:${sonar_port} --privileged myjenkins:latest
 
 
